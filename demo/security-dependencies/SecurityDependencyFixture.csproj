@@ -8,6 +8,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- Fixed dependency fixture. DEMO ONLY. Never reference this project from the API or solution. -->
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 </Project>
