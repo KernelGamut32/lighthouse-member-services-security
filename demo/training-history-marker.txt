@@ -1,0 +1,5 @@
+HARMLESS WORKSHOP TRAINING MARKER. This is not a credential.
+Purpose: history
+Detection, if any, uses an administrator-defined CUSTOM pattern.
+training_marker=LHTRAINING_6OQWIJSMPSDK6D6A0UGWKST5LN7QID1T
+Server=ServerName;Database=MSSQLTipsDB;User Id=Username;Password=Password;
