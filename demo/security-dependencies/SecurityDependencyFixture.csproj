@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <Description>Isolated dependency metadata for the Lighthouse security demonstration.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Intentionally vulnerable DEMO ONLY. Never reference this project from the API or solution. -->
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+</Project>

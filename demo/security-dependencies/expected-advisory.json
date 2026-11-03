@@ -1,0 +1,15 @@
+{
+  "kind": "instructor-authored expectation, not scanner output",
+  "verified_on": "2026-11-01",
+  "ecosystem": "NuGet",
+  "target_framework": "net10.0",
+  "package": "Newtonsoft.Json",
+  "fixture_version": "12.0.3",
+  "advisory": "GHSA-5crp-9r3c-p9vr",
+  "cve": "CVE-2024-21907",
+  "affected_range": "<13.0.1",
+  "first_fixed_version": "13.0.1",
+  "workshop_remediation_version": "13.0.3",
+  "source": "https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
+  "live_alert_status": "PENDING_DELIVERY_ORG_REHEARSAL"
+}
