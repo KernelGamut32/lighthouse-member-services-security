@@ -6,8 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseUrls("http://127.0.0.1:5080");
 builder.Services.AddProblemDetails();
 
-// LAB_CONFIGURATION: a local SQLite path, not a credential.
-string connectionString = "Data Source=Data/lighthouse.db;Mode=ReadOnly";
+// Configuration provides a local SQLite path; it is not a credential.
+string connectionString = builder.Configuration.GetConnectionString("Lighthouse")
+    ?? throw new InvalidOperationException("ConnectionStrings:Lighthouse is required.");
 connectionString = DatabasePaths.Resolve(connectionString, builder.Environment.ContentRootPath);
 builder.Services.AddSingleton(new MemberService(connectionString));
 builder.Services.AddSingleton(new LoanRepository(connectionString));

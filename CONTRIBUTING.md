@@ -9,7 +9,7 @@ Use a personal branch such as `refactor/payoff-service`. Keep the exercise chang
 - Tests use xUnit and the name Method_Scenario_ExpectedResult. Arrange independent inputs and expected values.
 - Preserve signatures during the refactor. A separate bug-fix commit can change behavior to match the rules.
 - Keep request validation at the HTTP boundary and business invariants in the domain service.
-- Use parameterized SQL. The seeded unsafe search is reserved for the security demonstration.
+- Use parameterized SQL. The starter contains the unsafe search used in the security demonstration; this worked implementation parameterizes it.
 - Avoid logging members' personal or financial fields, even though this dataset is synthetic.
 
 ## Before opening a pull request

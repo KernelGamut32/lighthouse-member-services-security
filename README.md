@@ -74,7 +74,9 @@ GitHub hosts the repository, pull requests, CI, and the separate asynchronous en
 
 ## Loan payoff rules
 
-Exercise 1: draft this section from the code, then reconcile it against `docs/payoff-rules.md`. Mark any contradiction instead of silently treating implementation behavior as approved policy.
+A quote is available for an active member and an open loan belonging to that member. The service accrues simple interest on the nonnegative principal for the elapsed calendar days since the interest as-of date, with a fixed 365-day denominator. A date before interest as-of accrues zero new interest. The grace period includes 15 days after the due date. A positive balance incurs one $25 fee only after the last grace day; a zero balance produces a zero quote. The service adds principal, unrounded interest, and the fee, then rounds the final total once to cents using AwayFromZero. The quote includes the day counts, grace-end date, and a calculation trace.
+
+The initial implementation contradicted the approved rules in three places: a ten-day grace constant, an inclusive comparison that charged on the final grace day, and ToEven rounding. The worked solution first corrects those behaviors using independent tests, then extracts focused calculation methods, shares member validation, and reads `ConnectionStrings:Lighthouse` from configuration. The separate endpoint change produces consistent HTTP validation errors. These are fictional training rules; `docs/payoff-rules.md` remains the detailed authority.
 
 ## Supported training target
 

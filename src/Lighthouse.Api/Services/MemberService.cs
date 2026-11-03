@@ -20,15 +20,7 @@ public sealed class MemberService(string connectionString)
     public Member GetRequiredActiveMember(string memberId)
     {
         Member member = Find(memberId) ?? throw new KeyNotFoundException("Member not found.");
-        ArgumentNullException.ThrowIfNull(member);
-        if (string.IsNullOrWhiteSpace(member.MemberId))
-        {
-            throw new ArgumentException("Member ID is required.", nameof(member));
-        }
-        if (!member.IsActive)
-        {
-            throw new InvalidOperationException("Member is inactive.");
-        }
+        MemberValidator.Validate(member);
         return member;
     }
 
@@ -37,8 +29,9 @@ public sealed class MemberService(string connectionString)
         using SqliteConnection connection = new(connectionString);
         connection.Open();
         using SqliteCommand command = connection.CreateCommand();
-        // LAB_SECURITY_SINK: intentional training flaw, fixed in the security demonstration.
-        command.CommandText = "SELECT MemberId,FullName,Segment,JoinedDate,IsActive FROM Members WHERE FullName LIKE '%" + name + "%' ORDER BY MemberId LIMIT 20";
+        // Query text is fixed; untrusted search text is passed as data.
+        command.CommandText = "SELECT MemberId,FullName,Segment,JoinedDate,IsActive FROM Members WHERE FullName LIKE $name ORDER BY MemberId LIMIT 20";
+        command.Parameters.AddWithValue("$name", "%" + name + "%");
         using SqliteDataReader reader = command.ExecuteReader();
         List<Member> members = [];
         while (reader.Read()) members.Add(ReadMember(reader));
